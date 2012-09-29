@@ -1,0 +1,26 @@
+---
+layout: buessli
+---
+.blogpost
+  - if page.previous_europareise2012
+    %span.previous
+      %a{:href=>"#{site.base_url}#{page.previous_europareise2012.url}"}
+        &lt;&lt; 
+        - text = page.previous_europareise2012.title
+        - if text.size < 40
+          = text
+        - else
+          = text.split(//).first(40).to_s  << "..."
+  - if page.next_europareise2012
+    %span.next
+      %a{:href=>"#{site.base_url}#{page.next_europareise2012.url}"}
+        - text = page.next_europareise2012.title
+        - if text.size < 40
+          = text
+        - else
+          = text.split(//).first(40).to_s << "..."
+        &gt;&gt;
+.blogpost
+  %h2 #{page.title}
+  ~ content
+%script{ :type=>'text/javascript', :src=>"#{site.base_url}/javascripts/picasa.js" }

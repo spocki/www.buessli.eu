@@ -1,0 +1,12 @@
+---
+title: 'Busausbau'
+layout: buessli
+inhibit_indexifier: true
+tab: home
+---
+- for post in site.busausbaus
+  .blogpost
+    %h2
+      = post.title
+    %p
+      ~ post.content

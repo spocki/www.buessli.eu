@@ -1,0 +1,24 @@
+---
+title: 'Reiseroute Europareise 2012'
+layout: buessli
+---
+:javascript
+  #{site.buessli.route_json}
+  $(document).ready(function(){
+  });
+.blogpost
+  %h2 Fahrtroute der Europareise 2012
+  %p Beim Klicken eines Busses werden die Geschichten und Bilder zu dieser Teilstrecke angezeigt
+.blogpost
+  %table.map{:gpx =>"#{site.base_url}/gpx/zusammenfassung.small.publish.gpx"}
+    %tr
+      %td
+        %div.map{:route => "yes"}
+-# .blogpost
+-#   %h2 Restroute der Europareise 2012
+-# .blogpost
+-#   %table.map{:gpx =>"#{site.base_url}/gpx/rest.small.publish.gpx"}
+-#     %tr
+-#       %td
+-#         %div.map{:route => "yes"}
+#{site.buessli.route_popups}

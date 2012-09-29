@@ -1,0 +1,36 @@
+---
+title: 'Europareise 2012'
+layout: buessli
+---
+:javascript
+  window.buessli.maxzoom = 10;
+- for post in site.europareise2012s[0,1]
+  .blogpost
+    %h2
+      %a{:href=>"#{site.base_url}#{post.url}"}= post.title
+    ~ site.buessli.header(post.content)
+    %a{:href=>"#{site.base_url}#{post.url}"}= "[weiter lesen ...]"
+
+
+.blogpost
+  %h2
+    Unsere letzten Bilder
+  = site.picasa.get_alben_overview
+.blogpost
+  %h2
+    Und hier sind wir momentan
+  = site.buessli.map("zusammenfassung.small.position")
+  %p
+    %center
+      %a{:href=>"#{site.base_url}/route.html"}= "[ komplette Reiseroute anzeigen ]"
+
+- for post in site.europareise2012s[1,10]
+  .blogpost
+    %h2
+      %a{:href=>"#{site.base_url}#{post.url}"}= post.title
+    ~ site.buessli.header(post.content)
+    %a{:href=>"#{site.base_url}#{post.url}"}= "[weiter lesen ...]"
+.blogpost
+  %h2
+    %a{:href=>"#{site.base_url}/archiv.html"}= "Zu den älteren Einträgen ..."
+    

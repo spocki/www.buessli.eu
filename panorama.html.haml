@@ -1,0 +1,14 @@
+---
+title: 'Panorama'
+layout: buessli
+---
+.blogpost
+  %h2 Panoramaeindrücke der Europareise 2012
+- for picture in site.buessli.panoramas
+  .blogpost
+    %center
+      %a.top{:href => "#{picture['link']}"}
+        %img.panorama{:src => "#{picture['url']}"}
+.blogpost
+  %center
+    %a{:href => "#{site.picasa.alben['panorama'].link}"}= "[ alle Panorama-Bilder anzeigen ]"

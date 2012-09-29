@@ -1,0 +1,13 @@
+profiles:
+  production:
+    base_url: http://www.buessli.eu/2.0/
+    online: true
+    development: false
+  development:
+    base_url: http://localhost:4242/
+    online: true
+    development: true
+  testing:
+    base_url: http://www.buessli.eu/2.0-test/
+    online: true
+    development: true

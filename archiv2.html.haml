@@ -1,0 +1,10 @@
+---
+layout: buessli
+---
+- for post in site.europareise2012s[50, site.europareise2012s.length]
+  .blogpost
+    %h2
+      %a{:href=>"#{site.base_url}#{post.url}"}= post.title
+    %p
+      ~ site.buessli.header(post.content)
+      %a{:href=>"#{site.base_url}#{post.url}"}= "[weiter lesen ...]"

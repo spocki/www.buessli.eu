@@ -1,0 +1,89 @@
+!!!5
+%html
+  %head
+    %meta{ :charset=>'utf-8' }
+    %meta{ :language => 'deutsch, de' }
+    %meta{ :copyright => 'Marco Knuettel' } 
+    %meta{ :author => 'Marco Knuettel' } 
+    %meta{ :keywords => 'Reise 2012 Europareise Weltreise Europa Sabatical Auszeit Busausbau Transit Camping Outdoor Bus Umbau Standheizung Innenausbau Kroatien Dänemark Norwegen Schweden Finnland Litauen Lettland Allrad Mountainbike Slackline Klettern' } 
+    %meta{ :description => 'Reise 2012 Europareise Weltreise Europa Sabatical Auszeit Busausbau Transit Camping Outdoor Bus Umbau Standheizung Innenausbau Kroatien Dänemark Norwegen Schweden Finnland Litauen Lettland Allrad Mountainbike Slackline Klettern' }
+    %title buessli.eu - #{page.title}
+    %link{ :rel=>'stylesheet', :type=>'text/css', :href=>"#{site.base_url}/stylesheets/buessli.css" }
+    :javascript
+      window.buessli = {}
+      window.buessli.maxzoom = 0;
+      window.buessli.massstab = true;
+      window.buessli.route = false;
+      window.buessli.gpxtracks = [];
+      window.buessli.picasa = [];
+    %script{ :type=>'text/javascript', :src=>"#{site.base_url}/javascripts/jquery-1.8.0.min.js" }
+    %script{ :type=>'text/javascript', :src=>"#{site.base_url}/javascripts/date.js" }
+    %script{ :type=>'text/javascript', :src=>"#{site.base_url}/javascripts/highcharts/highcharts.js" }
+    - if site.online
+      %script{ :type=>'text/javascript', :src=>"https://maps-api-ssl.google.com/maps/api/js?sensor=false" }
+      %script{ :type=>'text/javascript', :src=>"#{site.base_url}/javascripts/maps.js" }
+
+      :javascript
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-32171087-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+    :javascript
+      $(document).ready(function(){
+        $("a.top").each(function(){
+          $(this).attr("target","_top");
+        });
+        $("a[data-translation-lang]").each(function(){
+          var lang = $(this).attr("data-translation-lang");
+          var url = $(this).attr("data-url");
+          var href = "http://translate.google.de/translate?hl=de&sl=de&tl=" + lang + "&u=" + url;
+          $(this).attr("href", href);
+        });
+
+
+
+        $("#search").click(function(){
+          var base = $("body").attr("base");
+          var search_text = $("#search_text").val();
+          location.href = base + "/search.html?q=" + escape(search_text);
+        });
+      });
+
+  %body{:base => "#{site.base_url}"}
+    %center
+      %table.body
+        %tr
+          %td.header
+            %table.header
+              %tr
+                %td.links
+                  %a.brand{ :href=>"#{site.base_url}/index.html" } buessli.eu - Europareise 2012
+                  %a{ :href=>"#{site.base_url}/panorama.html" } Panorama
+                  %a{ :href=>"#{site.base_url}/route.html" } Route
+                  %a{ :href=>"#{site.base_url}/busausbau.html" } Busausbau
+                  %a{ :href=>"#{site.base_url}/impressum.html" } Impressum
+                  %a{ :href=>"http://www.facebook.com/buessli" } Facebook
+                %td.search
+                  #{site.buessli.google_translate("en", page)}
+                  #{site.buessli.google_translate("es", page)}
+                  #{site.buessli.google_translate("fr", page)}
+                  #{site.buessli.google_translate("fi", page)}
+                  #{site.buessli.google_translate("hu", page)}
+                  #{site.buessli.google_translate("sv", page)}
+                  -# %input{ :type => "text" , :id => "search_text" }
+                  -# %a{ :id => "search" } suchen
+        %tr
+          %td.picture
+        %tr
+          %td.content
+            ~ content
+        %tr
+          %td.footer
+            %p &copy; www.buessli.eu #{Date.today.year}
+  

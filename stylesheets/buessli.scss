@@ -1,0 +1,192 @@
+* {
+  margin: 0px;
+  padding: 0xp;
+}
+
+body {
+  background-color: #DCA826;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+table.body {
+  border-spacing: 0px;
+  background-color: #ffffff;
+  width: 1020px;
+}
+
+td.header {
+  background-color: #000000;
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 40px;
+}
+
+td.header a {
+   font-size: 14px;
+    color: #aaaaaa;
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+td.picture {
+  height: 220px;
+  background: url('../images/header.png') no-repeat;
+}
+
+
+td.content {
+     background-color: #ffffff;
+}
+
+td.header a.brand {
+   font-size: 20px;
+}
+
+td.footer {
+   background-color: #ffffff;
+   border-top: 1px #111111 solid;
+   height: 40px;
+   padding-left: 10px;
+}
+
+h2, a, a:hover {
+    color: #DCA826;
+    text-decoration: none;
+}
+
+.blogpost {
+  text-align: left;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  background-color: #fafafa;
+  min-height: 30px;
+}
+
+.blogpost p {
+   font-size: 14px;
+   line-height: 20px;
+   padding-bottom: 15px;
+}
+
+.blogpost li {
+   font-size: 14px;
+   line-height: 20px;
+}
+
+.blogpost h2 {
+   padding-bottom: 10px;
+}
+
+.blogpost h1 {
+   font-size: 14px;
+   padding-bottom: 10px;
+}
+
+.blogpost h3 {
+   padding-bottom: 10px;
+}
+
+p.where {
+  font-weight: bold;
+}
+
+img.panorama {
+  border-radius: 10px;
+}
+
+table.picasa_pictures {
+  margin-top: 0px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+table.picasa_pictures td {
+  align: top;
+  width: 25%;
+  height: 240px;
+}
+
+table.picasa_pictures a {
+  position: relative;
+}
+
+table.picasa_pictures img {
+  position: absolute;
+  border-radius: 10px;
+  top: -100px;
+  left: 0px;
+}
+
+table.picasa_overview {
+  margin-top: 0px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+table.picasa_overview td {
+  width: 25%;
+}
+
+table.picasa_overview img {
+  border-radius: 10px;
+}
+
+table.map {
+  padding: 10px 10px 20px 10px;
+}
+
+div.map { 
+  width: 952px; 
+  height: 500px; 
+  margin: 0; 
+  padding: 0;
+}
+
+div.map_profile { 
+  width: 952px; 
+  height: 200px; 
+  margin: 0; 
+  padding: 0;
+}
+
+div[route] { height: 758px; }
+
+span.previous {
+  font-size: 14px;
+  float: left;
+  padding: 5px 14px;
+  background-color: white;
+  border: 1px solid #DDD;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+
+span.next {
+  font-size: 14px;
+  float: right;
+  padding: 5px 14px;
+  background-color: white;
+  border: 1px solid #DDD;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+
+table.header {
+  width: 100%;
+}
+
+table.header td.search {
+  text-align: right;
+}
+
+div.infowindow {
+  font-size: 12px;
+  min-width: 400px;
+}
+
+.hidden {
+  display: none;
+}

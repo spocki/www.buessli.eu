@@ -1,0 +1,12 @@
+---
+layout: base
+---
+- for post in site.europareise2012s[0,5]
+  .blogpost
+    %h2
+      %a{:href=>"#{site.base_url}#{post.url}"}= post.title
+    .blogtagbar
+      #{post.date.strftime( '%Y-%m-%d' )}
+    %p
+      ~ post.content
+    %hr

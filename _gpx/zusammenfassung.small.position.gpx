@@ -1,26 +1,26 @@
 <gpx xmlns="http://www.topografix.com/GPX/1/1" xmlns:gpxtpx="http://www.garmin.com/xmlschemas/TrackPointExtension/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" creator="OruxMaps" version="1.1" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
   <metadata>
-    <name><![CDATA[2012-09-28 16:21]]></name>
+    <name><![CDATA[2012-09-29 11:04]]></name>
     <desc />
     <link href="http://www.oruxmaps.com">
       <text>OruxMaps</text>
     </link>
-    <time>2012-09-28T13:21:45Z</time>
-    <bounds maxlat="46.06657447479665" maxlon="28.753772500902414" minlat="40.06657447479665" minlon="22.753772500902414" />
+    <time>2012-09-29T08:04:38Z</time>
+    <bounds maxlat="45.81479831" maxlon="27.77479996" minlat="39.81479831" minlon="21.77479996" />
   </metadata>
   <trk>
     <trkseg>
-      <trkpt lat="43.06657447479665" lon="25.753772500902414">
-        <ele>281.16794</ele>
-        <time>2012-09-28T00:00:01Z</time>
+      <trkpt lat="42.81479831" lon="24.77479996">
+        <ele>613.5069</ele>
+        <time>2012-09-29T00:00:01Z</time>
       </trkpt>
-      <trkpt lat="43.06657447479665" lon="25.753772500902414">
-        <ele>281.16794</ele>
-        <time>2012-09-28T15:50:15Z</time>
+      <trkpt lat="42.81479831" lon="24.77479996">
+        <ele>613.5069</ele>
+        <time>2012-09-29T12:50:26Z</time>
       </trkpt>
-      <trkpt lat="43.06657447479665" lon="25.753772500902414">
-        <ele>281.16794</ele>
-        <time>2012-09-28T23:59:59Z</time>
+      <trkpt lat="42.81479831" lon="24.77479996">
+        <ele>613.5069</ele>
+        <time>2012-09-29T23:59:59Z</time>
       </trkpt>
     </trkseg>
   </trk>

@@ -151,10 +151,10 @@ Fortsdienst. Hier findet man Karten für fast alle Nationalparks
 - [](http://de.wikipedia.org/wiki/Varna)
 - [](http://de.wikipedia.org/wiki/Reiter_von_Madara)
 - [Campingplatz](http://www.campingvelikotarnovo.com/) Ein "richtiger" Campingplatz
-
 - [](http://travelin-tortuga.com/Travelin-Tortuga/Home_Page.html)
-http://www.explore-bulgaria.net/explore-bulgaria/bulgarian-monasteries.php
-http://www.panparks.org/
-http://visitcentralbalkan.net/en
+- [](http://www.explore-bulgaria.net/explore-bulgaria/bulgarian-monasteries.php)
+- [](http://www.panparks.org/)
+- [](http://visitcentralbalkan.net/en)
+- [](http://www.bulgarien.org/)
 
 

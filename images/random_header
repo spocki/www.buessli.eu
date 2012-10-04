@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+
+require 'fileutils'
+
+here = File.expand_path(File.dirname(__FILE__))
+
+root = File.join(here, '..')
+images = File.join(root, 'images')
+headers = File.join(images, 'header')
+header = File.join(images, 'header.png')
+
+puts headers
+
+length = Dir[headers + "/*.png"].length 
+random = (rand() * length).round % length
+source = Dir[headers + "/*.png"][random]
+puts source
+FileUtils.cp(source, header)
+

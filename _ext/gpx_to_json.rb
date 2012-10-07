@@ -5,6 +5,7 @@ require 'fileutils'
 require 'json'
 require 'uri'
 
+
 module Awestruct
   module Extensions
     class GpxToJsonModule

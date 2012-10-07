@@ -27,14 +27,17 @@ function handleMaps() {
           }
 	   });
 
-	   if(window.buessli.maxzoom != 0) {
-	google.maps.event.addListener(map, 'zoom_changed', function() {
-	   zoomChangeBoundsListener = google.maps.event.addListener(map, 'bounds_changed', function(event) {
-		if (this.getZoom() > window.buessli.maxzoom) // Change max/min zoom here
-		  this.setZoom(window.buessli.maxzoom);
-          google.maps.event.removeListener(zoomChangeBoundsListener);
-		});
-	     });
+	   if(false && window.buessli.maxzoom != 0) {
+		   google.maps.event.addListener(map, 'zoom_changed', function() {
+			   zoomChangeBoundsListener = google.maps.event.addListenerOnce(map, 'bounds_changed', function(event) {
+				   if (this.getZoom() > window.buessli.maxzoom) {
+					   this.setZoom(window.buessli.maxzoom);
+				   }
+			   });
+			   setTimeout(function(){
+				   google.maps.event.removeListener(zoomChangeBoundsListener);
+			   },5000);
+		 });
 	   }
 
        map.mapTypes.set("OSM", new google.maps.ImageMapType({

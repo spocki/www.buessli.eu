@@ -156,5 +156,7 @@ Fortsdienst. Hier findet man Karten für fast alle Nationalparks
 - [](http://www.panparks.org/)
 - [](http://visitcentralbalkan.net/en)
 - [](http://www.bulgarien.org/)
+http://www.gpsies.com/map.do?fileId=crmvwbgkypvxnyay
+
 
 

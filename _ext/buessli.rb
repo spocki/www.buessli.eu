@@ -242,4 +242,29 @@ class BuessliHelper
     return html
   end
   
+  def panorama(image="")
+    html = ""
+    if image != ""
+      panorama_album = @site.picasa.alben["panorama"]
+      for picture in panorama_album.pictures
+        if picture["url"].match(image)
+          html = "<table>\n"
+          html += "<tr>\n"
+          html += "<td>\n"
+          html += "<a href=\"" + picture["link"] + "\">"
+          html += "<img class=\"panorama\" src=\""
+          url = picture["url"] # .gsub(/s970/, "s950")
+          html += url
+          html += "\" />"
+          html += "</a\n"
+          html += "</td>\n"
+          html += "</tr>\n"
+          html += "</table>\n"
+          break
+        end
+      end
+    end
+    return html
+  end
+  
 end

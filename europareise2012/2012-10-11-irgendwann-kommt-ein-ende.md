@@ -20,6 +20,8 @@ kennt. Hier wechselten sich die Läden ein kleines bisschen anders ab: Friseur, 
 KFZ-Werkstatt, Möbelladen, Drogerie, Roller-Verkäufer und natürlich Gyros-Stände. Ich glaube in dieser 
 Straße bekommt man alles – wenn man den Richtigen Griechen kennt ;-)
 
+#{site.buessli.panorama("2012-10-11-panorama-meteora-01")}
+
 Über Land ging es dann weiter Richtung Meteora. Aus einiger Entfernung konnten wir schon sehen, dass 
 sich landschaftlich dort etwas Besonderes befand: Wir sahen riesige, rund geschliffene Felszapfen und 
 -wände. Die unterschieden sich komplett vom restlichen, hügeligen Griechenland.

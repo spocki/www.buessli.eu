@@ -129,7 +129,10 @@ class GpxToJson
             json_track["name"] = name
             json_track["points"] = []
             trk.get_elements( 'trkseg/trkpt' ).each do |trkpt|
-              ele = trkpt.get_elements( 'ele' )[0].text
+              ele = 0;
+	      if (trkpt.get_elements( 'ele' )[0])
+	        ele = trkpt.get_elements( 'ele' )[0].text
+	      end
               lon = trkpt.attributes["lon"]
               lat = trkpt.attributes["lat"]
               #  puts lon + " " + lat + " " + ele

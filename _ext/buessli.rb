@@ -115,14 +115,16 @@ class BuessliHelper
   end
   
   def album(album="", cell_one=1, cell_two=2, cell_three=3, cell_four=4)
-    
+    html = ""
     picasa_album_to_insert = @site.picasa.alben[album]
-    
-    html = "<script language=\"javascript\">"
-    html += "  window.buessli.picasa.push(" + picasa_album_to_insert.to_json + ")"
-    html += "</script>"
-    html += picasa_album_to_insert.get_picture_table(cell_one, cell_two, cell_three, cell_four)
-    
+    if picasa_album_to_insert != nil
+      html += "<script language=\"javascript\">"
+      html += "  window.buessli.picasa.push(" + picasa_album_to_insert.to_json + ")"
+      html += "</script>"
+      html += picasa_album_to_insert.get_picture_table(cell_one, cell_two, cell_three, cell_four)
+    else
+      html += "ALBUM:  " + album + " nicht gefunden!"
+    end
     return html
   end
   

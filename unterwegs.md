@@ -156,7 +156,17 @@ Fortsdienst. Hier findet man Karten für fast alle Nationalparks
 - [](http://www.panparks.org/)
 - [](http://visitcentralbalkan.net/en)
 - [](http://www.bulgarien.org/)
+http://www.rilanationalpark.org/en
+http://de.wikipedia.org/wiki/Sieben_Rila-Seen
 http://www.gpsies.com/map.do?fileId=crmvwbgkypvxnyay
+http://www.gpsies.com/map.do?fileId=rkuornlmxjttjqlk
+
+### Griechenland
+
+http://www.wind.com.gr/en/wind/wind-stores/?location=larissa&retailers=on
+http://de.wikipedia.org/wiki/Olymp#Wanderwege
+http://www.hellas-guide.com/eco_tourism/forests-greece.html
+
 
 
 

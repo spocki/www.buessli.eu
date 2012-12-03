@@ -129,7 +129,7 @@ class BuessliHelper
   end
   
   def panoramas
-    panoramas = @site.picasa.alben["panorama"].pictures.reverse
+    panoramas = @site.picasa.alben["panorama_4x1"].pictures.reverse
     new_panoramas = []
     new_panoramas << panoramas[0]
     new_panoramas << panoramas[1]
@@ -247,15 +247,18 @@ class BuessliHelper
   def panorama(image="")
     html = ""
     if image != ""
-      panorama_album = @site.picasa.alben["panorama"]
+      # puts "PANO: #{image}"
+      panorama_album = @site.picasa.alben["panorama_4x1"]
       for picture in panorama_album.pictures
-        if picture["url"].match(image)
+        url = picture["url"].gsub(/\.wm\./, ".")
+        # puts "URL : #{url}" 
+        if url.match(image)
           html = "<table>\n"
           html += "<tr>\n"
           html += "<td>\n"
           html += "<a href=\"" + picture["link"] + "\">"
           html += "<img class=\"panorama\" src=\""
-          url = picture["url"] # .gsub(/s970/, "s950")
+          url = picture["url"]
           html += url
           html += "\" />"
           html += "</a\n"

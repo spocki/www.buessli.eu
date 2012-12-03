@@ -207,10 +207,12 @@ function handleMaps() {
 	    drawChart(profileId, name, elevations);
 	}	
 	
+        // 237024
+        var color = "#237024";
 	var poly = new google.maps.Polyline({
 		// use your own style here
 		path: points,
-		strokeColor: "#DCA826",
+		strokeColor: color,
 		strokeOpacity: .7,
 		strokeWeight: 4
 	    });

@@ -9,12 +9,12 @@ Awestruct::Extensions::Pipeline.new do
   extension Awestruct::Extensions::Posts.new( '/europareise2012', :europareise2012s )
   extension Awestruct::Extensions::Posts.new( '/busausbau', :busausbaus )
   extension Awestruct::Extensions::Buessli.new
-  extension Awestruct::Extensions::Atomizer.new( 
-    :europareise2012s, 
-    '/europareise2012/feed.atom', 
-    :num_entries=>3,
-    :content_url=>'http://www.buessli.eu/2.0/europareise2012',
-    :feed_title=> 'buessli.eu - Europareise 2012' )
+  #extension Awestruct::Extensions::Atomizer.new( 
+  #  :europareise2012s, 
+  #  '/europareise2012/feed.atom', 
+  #  :num_entries=>3,
+  #  :content_url=>'http://www.buessli.eu/2.0/europareise2012',
+  #  :feed_title=> 'buessli.eu - Europareise 2012' )
   #extension Awestruct::Extensions::BlogAsJson.new
   extension Awestruct::Extensions::BlogAsJsonModule.new
 end

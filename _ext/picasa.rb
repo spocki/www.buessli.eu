@@ -1,4 +1,3 @@
-# -*- coding: undecided -*-
 require 'rexml/document'
 require 'date'
 require 'fileutils'
@@ -6,6 +5,7 @@ require 'net/http'
 require 'net/https'
 require 'uri'
 require 'json'
+require 'httparty'
 
 module Awestruct
   module Extensions
@@ -21,132 +21,94 @@ module Awestruct
         @site.picasa = {}
         @site.picasa.alben = {}
         @site.picasa.names = []
-        rebuild_cache()
-        @site.picasa.get_alben_overview = PicasaAlbumOverview.new(@site, @site.picasa.overview).get_overview_table
-
-	write_json_files()
+        #convert
+        process_alben
+        create_overview
       end
       
       private
       
-      def write_json_files
-        output_file =  @output_base_path + "/picasa.json"
-        # if ( ! File.exist?( output_file ) )
-        FileUtils.mkdir_p( File.dirname( output_file ) )
-        File.open( output_file, 'wb' ) do |f|
-          f.write @site.picasa.to_json
+      def convert
+        alben = []
+        xml = REXML::Document.new(File.read('_picasa_cache/user/115799352095294636731.xml')).root
+        for item in xml.get_elements( 'channel/item' )
+          album = {}
+          album["src"] = item.get_elements("guid")[0].text
+          album["name"] = item.get_elements("title")[0].text
+          alben << album
         end
-        # end
-        # for album in @site.picasa.alben.keys do
-        #   output_file =  @output_base_path + "/picasa-" + album + ".json"
-        #   # if ( ! File.exist?( output_file ) )
-        #   FileUtils.mkdir_p( File.dirname( output_file ) )
-        #   File.open( output_file, 'wb' ) do |f|
-        #     f.write @site.picasa.alben[album].to_json
-        #   end
-        #   # end
-        # end
+        puts alben.to_json
       end
       
-      def rebuild_cache()
-        handle_user("https://picasaweb.google.com/data/feed/base/user/115799352095294636731?alt=rss&hl=de&imgmax=100")
-      end
-      
-      def handle_user(user_url)
-        output_file = user_url.gsub(/https:\/\/picasaweb.google.com\/data\/feed\/base\//, @output_base_path)
-        output_file = output_file.gsub(/\?.*/, "")
-        output_file = output_file + ".xml"
-        body = cache_file(user_url, output_file)
-        doc = REXML::Document.new( body )
-        root = doc.root
-        
+      def create_overview
         @site.picasa.overview = PicasaAlbum.new(@site)
         @site.picasa.overview.pictures = []
-        root.get_elements( 'channel/item' ).each do |item|
-          @site.picasa.overview.pictures.push(handle_picture(item, "s220-c"))
+        for name in @site.picasa.names
+          for picture in @site.picasa.alben[name].pictures
+            if picture["tags"].include?("highlight")
+              picture["title"] = name
+              @site.picasa.overview.pictures << picture
+            end
+          end
         end
+        @site.picasa.get_alben_overview = PicasaAlbumOverview.new(@site, @site.picasa.overview).get_overview_table
+      end
+      
+      def process_alben
+        puts "process_alben"
+        config = JSON.parse(File.read('_config/alben.json'))
         
-        root.get_elements( 'channel/item/guid' ).each do |item|
-          handle_album(item.text) 
-        end
-      end
-      
-      def handle_album(album_url)
-        album_url = album_url + "&kind=photo&imgmax=100"
-        album_url = album_url.gsub(/\/entry\//, "/feed/")
-        album_url = album_url.gsub(/\/photoid.*\?/, "?")
-        output_file = album_url.gsub(/https:\/\/picasaweb.google.com\/data\/feed\/base\//, @output_base_path)
-        output_file = output_file.gsub(/\?.*/, "")
-        output_file = output_file + ".xml"
-        body = cache_file(album_url, output_file)
-        doc = REXML::Document.new( body )
-        root = doc.root
-        album_title = root.get_elements( 'channel/title' )[0].text
-        pictures = []
-        size = "s220-c"
-        if ( album_title =~ /panorama/ )
-          size = "s970"
-        end
-        root.get_elements( 'channel/item' ).each do |item|
-          pictures.push(handle_picture(item, size))
-        end
-        @site.picasa.names.push(album_title)
-        album = PicasaAlbum.new(@site, album_title)
-        @site.picasa.alben[album_title] = album
-        @site.picasa.alben[album_title].pictures = pictures
-        @site.picasa.alben[album_title].link = root.get_elements("channel/link")[0].text
-      end
-      
-      def handle_picture(picture_item, size)
-        picture = {}
-        url = picture_item.get_elements("media:group/media:content")[0].attributes["url"]
-        pos = picture_item.get_elements("georss:where/gml:Point/gml:pos")
-        url = url.gsub(/s100-c/, "s100")
-        picture["url"] = url.gsub(/s100/, size)
-        if (pos != nil && pos.length != 0)
-          position = pos[0].text.split(' ') 
-          picture["position"] = {}
-          picture["position"]["lon"] = position[0]
-          picture["position"]["lat"] = position[1]
-        end
-        picture["link"] = picture_item.get_elements("link")[0].text
-        picture["title"] = picture_item.get_elements("title")[0].text
-        return picture
-      end
-      
-      def cache_file(url_to_get, output_file)
-        body = "";
-        if ( ! File.exist?( output_file ) )
-          FileUtils.mkdir_p( File.dirname( output_file ) )
-          body = get_url( url_to_get )
-          File.open( output_file, 'wb' ) do |f|
-            f.write body
+        for album in config
+          name = album["name"]
+          album_file_name = "_picasa_cache/#{name}.json"
+          if File.exist?(album_file_name)
+            # puts "LOAD: #{album_file_name}" 
+            album = JSON.parse(File.read(album_file_name))
+          else
+            album["pictures"] = []
+            puts "GET : #{name}"
+            xml = REXML::Document.new(HTTParty.get(album["src"])).root
+            for item in xml.get_elements( 'channel/item' )
+              picture = {}
+              url = item.get_elements("media:group/media:content")[0].attributes["url"]
+              url = url.gsub(/s1500-c/, "s100")
+              url = url.gsub(/s1500/, "s220-c")
+              picture["url"] = url
+              pos = item.get_elements("georss:where/gml:Point/gml:pos")
+              if (pos != nil && pos.length != 0)
+                position = pos[0].text.split(' ') 
+                picture["position"] = {}
+                picture["position"]["lon"] = position[0]
+                picture["position"]["lat"] = position[1]
+              end
+              keywords = item.get_elements("media:group/media:keywords")[0]
+              picture["tags"] = []
+              if (keywords != nil)
+                if (keywords.text != nil)
+                  for keyword in keywords.text.split(',')
+                    keyword.strip!
+                    picture["tags"] << keyword
+                  end
+                end
+              end
+              picture["link"] = item.get_elements("link")[0].text
+              picture["title"] = item.get_elements("title")[0].text
+              album["pictures"] << picture
+            end
+            file = File.new(album_file_name, "w")
+            file.write(JSON.pretty_generate(album))
+            file.close
           end
-        else
-          file = File.new( output_file , "r")
-          while (line = file.gets)
-            body += line
-          end
-          file.close
+          
+          @site.picasa.names.push(name)
+          @site.picasa.alben[name] = PicasaAlbum.new(@site, name)
+          @site.picasa.alben[name].pictures = album["pictures"]
+          @site.picasa.alben[name].link = album["src"]
+          
         end
-        return body
       end
-      
-      def get_url(url_to_get)
-        puts "GET " + url_to_get
-        url = URI.parse( url_to_get )
-        http = Net::HTTP.new(url.host, url.port)
-        http.use_ssl = true
-        http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-        request = Net::HTTP::Get.new(url.request_uri)
-        res = http.start {|http| http.request(request) }
-        return res.body
-      end
-      
-    end
-    
+    end      
   end
-  
 end
 
 class PicasaAlbum

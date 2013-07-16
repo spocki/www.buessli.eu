@@ -1,6 +1,6 @@
 profiles:
   production:
-    base_url: http://www.buessli.eu/2.0/
+    base_url: http://www.buessli.de/2.0/
     online: true
     development: false
   development:
@@ -8,6 +8,6 @@ profiles:
     online: true
     development: true
   testing:
-    base_url: http://www.buessli.eu/2.0-test/
+    base_url: http://www.buessli.de/2.0-test/
     online: true
     development: true
